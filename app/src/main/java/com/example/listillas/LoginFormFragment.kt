@@ -37,6 +37,10 @@ class LoginFormFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_login_form, container, false)
     }
 
+    override fun onPause() {
+        super.onPause()
+    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
