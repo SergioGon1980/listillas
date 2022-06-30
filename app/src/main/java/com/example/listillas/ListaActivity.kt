@@ -13,27 +13,41 @@ import java.util.*
 
 class ListaActivity : AppCompatActivity() {
 
-    var List: MutableList<String> = mutableListOf()
+    var list: MutableList<String> = mutableListOf()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista)
         Log.d("debug", "List Activity Open")
 
+        val listService = ListService(this)
+        list = listService.getListFromFile()
+        list.forEach {
+            addItemToLayout(it)
+        }
+
         val newItem = findViewById<Button>(R.id.newButton)
         newItem.setOnClickListener {
-            addNewItem()
+            Log.d("debug)", "Click New Item")
+            addNewItem(listService)
         }
     }
 
-    private fun addNewItem() {
+    private fun addNewItem(service: ListService) {
+
+        //Generar una variable que guarda la fecha y meterla en la lista
         val randomText: String = Date().toString()
-        List.add(randomText)
+        //list.add(randomText)
+        service.addItemToList(randomText)
+    }
+
+    private fun addItemToLayout(text: String) {
 
         val textView = TextView(this)
-        textView.text = randomText
+        textView.text
 
-        val listLayout = findViewById<LinearLayout>(R.id.listLayout)
-        listLayout.addView(textView)
+        val lisLayout = findViewById<LinearLayout>(R.id.listLayout)
+        textView.text = text
     }
 }
