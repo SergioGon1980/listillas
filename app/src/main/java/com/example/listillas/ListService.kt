@@ -18,12 +18,7 @@ class ListService (context:Context){
             file.createNewFile()
         }
 
-        //useLines es un iterador que permite tratar las lineas de un fichero de forma independiente
-        list = mutableListOf()
-        file.useLines {
-            list.add(it.toString())
-        }
-        Log.d("debug", "Este es el FilesDir: " + contextList.filesDir)
+        list = file.readLines() as MutableList<String>
         return list
     }
 
