@@ -40,7 +40,7 @@ class ListaActivity : AppCompatActivity() {
         }
 
         // Definimos una variable para usar el newButton
-        val newItem = findViewById<Button>(R.id.newButton)
+/*        val newItem = findViewById<Button>(R.id.newButton)
         // Usamos la funcion para escuchar el click del boton
         newItem.setOnClickListener {
             Log.d("debug)", "Click New Item")
@@ -48,7 +48,7 @@ class ListaActivity : AppCompatActivity() {
             // el fichero y añadirlo al layout. Le pasamos una variable de tipo
             // ListService para poder utilizar la funcion addItemToList
             addNewItem(listService)
-        }
+        }*/
     }
 
     // Funcion para escribir en el fichero y añadir elemento al layout
