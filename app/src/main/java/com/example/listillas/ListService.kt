@@ -12,16 +12,7 @@ import java.util.*
 class ListService (context:Context){
 
     val contextList = context
-    val filename = "List.txt"
-    val file = File(contextList.filesDir, filename)
-
-    //Esto es para fichero
-    //var list = mutableListOf<String>()
-
-    //Esto es para el fichero de JSON
     var list = mutableListOf<Item>()
-
-
     var json = JSONArray()
 
     init {
@@ -29,11 +20,11 @@ class ListService (context:Context){
             json = JSONArray(context.assets.open("example.json").bufferedReader().use { it.readText() })
             for (i in 0 until  json.length()) {
                 var jsonObject = json.getJSONObject(i)
-                var item: Item = Item(
+                var item = Item(
                     jsonObject.optString("title"),
                     jsonObject.optString("description"),
                     jsonObject.optString("creationDate"),
-                    jsonObject.getBoolean("title")
+                    jsonObject.getBoolean("check")
                 )
                 list.add(item)
             }
@@ -41,27 +32,4 @@ class ListService (context:Context){
             Log.d("Error", ioException.toString())
         }
     }
-
-    /* *** USO PARA FICHEROS ***
-    //Obtener datos del fichero local list.txt - quedara obsoleta al sutituir el fichero
-    // por un JSON
-    fun getListFromFile():MutableList<String> {
-
-        if (!file.exists()){
-            file.createNewFile()
-        }
-
-        list = file.readLines() as MutableList<String>
-        return list
-    }
-
-    fun addItemToList (item: String) {
-        list.add(item)
-        file.printWriter().use {
-            out -> list.forEach {
-                out.println(it)
-            }
-        }
-
-    }*/
 }
