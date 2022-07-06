@@ -1,29 +1,24 @@
-package com.example.listillas
+package com.example.listillas.list
 
 import android.content.Context
 import android.util.Log
+import com.example.listillas.item.Item
 import org.json.JSONArray
-import org.json.JSONObject
-import java.io.File
 import java.io.IOException
-import java.time.LocalDateTime
-import java.util.*
 
-class ListService (context:Context){
+class ListService constructor(context:Context){
 
-    val contextList = context
     var list = mutableListOf<Item>()
-    var json = JSONArray()
 
     init {
         try {
-            json = JSONArray(context.assets.open("example.json").bufferedReader().use { it.readText() })
+            val json = JSONArray(context.assets.open("example.json").bufferedReader().use { it.readText() })
             for (i in 0 until  json.length()) {
-                var jsonObject = json.getJSONObject(i)
-                var item = Item(
+                val jsonObject = json.getJSONObject(i)
+                val item = Item(
                     jsonObject.optString("title"),
                     jsonObject.optString("description"),
-                    jsonObject.optString("creationDate"),
+                    jsonObject.getLong("creationDate"),
                     jsonObject.getBoolean("check")
                 )
                 list.add(item)

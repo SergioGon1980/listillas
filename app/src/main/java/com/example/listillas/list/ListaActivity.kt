@@ -1,16 +1,15 @@
-package com.example.listillas
+package com.example.listillas.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.service.controls.actions.FloatAction
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.*
-import androidx.appcompat.view.menu.MenuView
-import androidx.appcompat.widget.ButtonBarLayout
-import androidx.fragment.app.Fragment
-import org.json.JSONArray
-import java.util.*
+import com.example.listillas.ItemDetailFragment
+import com.example.listillas.R
+import com.example.listillas.item.Item
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 //import { Icon } from '@material-ui/core';
 
@@ -32,18 +31,11 @@ class ListaActivity : AppCompatActivity() {
         addListToLayout(listLayout)
 
         // Definimos una variable para usar el newButton
-        val newItem = findViewById<Button>(R.id.newButton)
+        val newItem = findViewById<FloatingActionButton>(R.id.newButton)
+
         // Usamos la funcion para escuchar el click del boton
-        newItem.setOnClickListener {
-            // Queremos que incluya un nuevo elemento en el detaillayout
-
-            //Variables para la creacion de un nuevo fragmento
-            val fragmentTransacction = supportFragmentManager.beginTransaction()
-            val fragment = ItemDetailFragment()
-
-            fragmentTransacction.replace(R.id.detailLayout, fragment)
-            fragmentTransacction.addToBackStack(null)
-            fragmentTransacction.commit()
+        newItem.setOnClickListener() {
+            addElemetToFragment()
         }
     }
 
@@ -53,9 +45,20 @@ class ListaActivity : AppCompatActivity() {
             itemview.findViewById<CheckBox>(R.id.checkbox).isChecked = it.chek
             itemview.findViewById<TextView>(R.id.textTitle).text = it.title
             itemview.findViewById<TextView>(R.id.textDescription).text = it.description
-            itemview.findViewById<TextView>(R.id.textDate).text = it.date
+            itemview.findViewById<TextView>(R.id.textDate).text = it.getFormattedDate()
             Layout.addView(itemview)
         }
+    }
+
+    private fun addElemetToFragment() {
+        //Variables para la creacion de un nuevo fragmento
+        val fragmentTransacction = supportFragmentManager.beginTransaction()
+        val fragment = ItemDetailFragment()
+
+        // Queremos que incluya un nuevo elemento en el detaillayout
+        fragmentTransacction.replace(R.id.detailLayout, fragment)
+        fragmentTransacction.addToBackStack(null)
+        fragmentTransacction.commit()
     }
 
     private fun addItemToLayout(text: String) {

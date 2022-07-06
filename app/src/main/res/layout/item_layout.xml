@@ -18,31 +18,34 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <CheckBox
                 android:id="@+id/checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
             </CheckBox>
 
             <LinearLayout
-                android:padding="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/textTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
                 </TextView>
 
                 <TextView
                     android:id="@+id/textDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
+
                 </TextView>
 
             </LinearLayout>
@@ -50,21 +53,31 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="right">
+                android:gravity="right"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="5dp">
+                    android:textSize="7dp">
 
                 </TextView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/updateButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/ic_baseline_create_24"
+                    app:iconTint="@color/primaryDarkColor"
+                    app:backgroundTint="@color/primaryTextColor"
+                    style="@style/Widget.MaterialComponents.Button.TextButton.Icon">
+
+                </com.google.android.material.button.MaterialButton>
 
             </LinearLayout>
 
         </LinearLayout>
 
-
     </com.google.android.material.card.MaterialCardView>
-</FrameLayout>
+    </FrameLayout>

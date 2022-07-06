@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Listillas">
         <activity
-            android:name=".ListaActivity"
+            android:name=".list.ListaActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -4,30 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.listillas.ListaActivity">
+    tools:context="com.example.listillas.list.ListaActivity">
 
-    <LinearLayout
-        android:id="@+id/listLayout"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/light_gray"
-        app:layout_constraintBottom_toTopOf="@+id/detailLayout"
+        app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/newButton"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/listLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/new_item"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/light_gray"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/detailLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/listLayout" />
+            app:layout_constraintTop_toTopOf="parent">
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
 
     <FrameLayout
         android:id="@+id/detailLayout"
@@ -35,20 +35,18 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
-
-    <!-- Este fragmento lo vamos a llamar de forma dinamica desde el boton de
-         nuevo item
-    <fragment
-        android:id="@+id/itemDetail"
-        android:name="com.example.listillas.ItemDetailFragment"
-        android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/newButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        android:src="@drawable/ic_baseline_add_24">
 
-    </fragment>-->
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,12 +2,11 @@ package com.example.listillas
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import android.widget.Button
+import com.example.listillas.list.ListaActivity
 import com.google.android.material.button.MaterialButton
 
 class LoginFormFragment : Fragment() {
