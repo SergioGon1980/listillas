@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Listillas">
         <activity
+            android:name=".login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".config.ConfigActivity"
+            android:exported="false" />
+        <activity
             android:name=".list.ListaActivity"
             android:exported="false" />
         <activity

@@ -2,7 +2,7 @@ package com.example.listillas.list
 
 import android.content.Context
 import android.util.Log
-import com.example.listillas.item.Item
+import com.example.listillas.list.item.Item
 import org.json.JSONArray
 import java.io.IOException
 

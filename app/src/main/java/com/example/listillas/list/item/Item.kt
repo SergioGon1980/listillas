@@ -1,4 +1,4 @@
-package com.example.listillas.item
+package com.example.listillas.list.item
 
 import java.text.SimpleDateFormat
 import java.time.Instant

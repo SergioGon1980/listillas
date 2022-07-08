@@ -2,13 +2,13 @@ package com.example.listillas.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.service.controls.actions.FloatAction
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
 import android.widget.*
 import com.example.listillas.ItemDetailFragment
 import com.example.listillas.R
-import com.example.listillas.item.Item
+import com.example.listillas.list.item.Item
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 //import { Icon } from '@material-ui/core';
@@ -37,6 +37,12 @@ class ListaActivity : AppCompatActivity() {
         newItem.setOnClickListener() {
             addElemetToFragment()
         }
+    }
+
+    // Menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu,menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     private fun addListToLayout(Layout:LinearLayout) {
