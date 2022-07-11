@@ -2,23 +2,25 @@ package com.example.listillas.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.FrameLayout
 import com.example.listillas.R
-import com.example.listillas.menu.MenuItems
+import com.example.listillas.databinding.ActivityLoginBinding
+import com.example.listillas.menu.MenuHandler
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var _binding: ActivityLoginBinding
+    private val binding get() = _binding
+
     private var loginContainer: FrameLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        _binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        loginContainer = findViewById(R.id.loginContainer)
         val isLocal = intent.getBooleanExtra("isLocal", true)
-        Log.d("debug", "Islocal " + isLocal)
 
         if (isLocal) {
             initLocalJSON()
@@ -35,13 +37,17 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        MenuItems().itemHandler(item)
+        var menuHandler = MenuHandler(this,"Login")
+        menuHandler.itemHandler(item)
+        if (menuHandler.intent != null) {
+            startActivity(menuHandler.intent)
+        }
         return super.onOptionsItemSelected(item)
     }
 
     fun initFirebase() {
         var transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.loginContainer, LoginFormFragment())
+        transaction.replace(binding.loginContainer.id, LoginFormFragment())
         transaction.commit()
     }
 

@@ -7,26 +7,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.listillas.R
+import com.example.listillas.databinding.FragmentLoginFormBinding
 import com.example.listillas.list.ListaActivity
 import com.google.android.material.button.MaterialButton
 
 class LoginFormFragment : Fragment() {
+    private var _binding: FragmentLoginFormBinding? = null
+    private val bilding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_login_form, container, false)
+        val binding = FragmentLoginFormBinding.inflate(inflater, container,false)
 
-        val buttonNext = view.findViewById<MaterialButton>(R.id.next_button)
-
-        buttonNext.setOnClickListener {
+        binding.nextButton.setOnClickListener {
             val intentLista = Intent (context, ListaActivity::class.java)
             startActivity(intentLista)
         }
 
-        return view
+        return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

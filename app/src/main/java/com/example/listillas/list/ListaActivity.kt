@@ -5,21 +5,29 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.*
 import com.example.listillas.ItemDetailFragment
 import com.example.listillas.R
+import com.example.listillas.databinding.ActivityListaBinding
+import com.example.listillas.databinding.ActivityLoginBinding
 import com.example.listillas.list.item.Item
+import com.example.listillas.menu.MenuHandler
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 //import { Icon } from '@material-ui/core';
 
 class ListaActivity : AppCompatActivity() {
+    private lateinit var _binding: ActivityListaBinding
+    private val binding get() = _binding
 
     var list: MutableList<Item> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lista)
+        _binding = ActivityListaBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         Log.d("debug", "List Activity Open")
 
 
@@ -34,7 +42,7 @@ class ListaActivity : AppCompatActivity() {
         val newItem = findViewById<FloatingActionButton>(R.id.newButton)
 
         // Usamos la funcion para escuchar el click del boton
-        newItem.setOnClickListener() {
+        binding.newButton.setOnClickListener() {
             addElemetToFragment()
         }
     }
@@ -43,6 +51,15 @@ class ListaActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu,menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var menuHandler = MenuHandler(this,"List")
+        menuHandler.itemHandler(item)
+        if (menuHandler.intent != null) {
+            startActivity(menuHandler.intent)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun addListToLayout(Layout:LinearLayout) {
