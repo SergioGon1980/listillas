@@ -36,7 +36,9 @@ class ListaActivity : AppCompatActivity() {
         val listService = ListService(this)
         list = listService.list
         val listLayout = findViewById<LinearLayout>(R.id.listLayout)
+
         addListToLayout(listLayout)
+
 
         // Definimos una variable para usar el newButton
         val newItem = findViewById<FloatingActionButton>(R.id.newButton)
