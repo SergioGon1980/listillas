@@ -24,19 +24,19 @@ class JsonActivity : AppCompatActivity() {
         _binding = ActivityJsonBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val handler: (JsonItem) -> = JsonItem {
+/*        val handler: (JsonItem) -> = JsonItem {
             jsonItem: JsonItem ->
             {
                 Log.d("debug", "ITEM" + jsonItem.name)
             }
-        }
+        }*/
 
-        jsonList = JsonService(this).getFileList()
+        /*jsonList = JsonService(this).getFileList()
         jsonListAdapter = JsonListAdapter(jsonList, handler)
 
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager (this)
         binding.fileListContainer.layoutManager = layoutManager
-        binding.fileListContainer.adapter = jsonListAdapter
+        binding.fileListContainer.adapter = jsonListAdapter*/
 
         binding.createJsonBtn.setOnClickListener(){
             createJsonHandler()
