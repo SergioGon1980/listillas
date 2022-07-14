@@ -14,8 +14,6 @@ class JsonService (val context: Context){
     val fileExtension = ".json"
 
     fun createJsonFile (name:String, copyExample:Boolean) {
-        Log.d("debug","Crea un nuevo JSON: " + name)
-        Log.d("debug","Crea a partir del ejemplo: " + copyExample.toString())
         //TODO crear un nuevo fichero JSON
 
         var list = mutableListOf<Item>()
@@ -28,9 +26,9 @@ class JsonService (val context: Context){
         // Para que el directorio del fichero JSON quede empaquetado con la aplicacion
         // - context.filesDir
         val folder = File(context.filesDir, folderName)
-            // No hace falta comprobar si la carpeta existe porque el MKDIR
-            // lo hace por defecto
-            folder.mkdir()
+        // No hace falta comprobar si la carpeta existe porque el MKDIR
+        // lo hace por defecto
+        folder.mkdir()
 
         val file = File (folder, name + fileExtension)
         file.createNewFile()
@@ -40,7 +38,7 @@ class JsonService (val context: Context){
         file.writeText(json)
     }
 
-    fun getFileList():MutableList<JsonItem> {
+    fun readFileList():List<JsonItem> {
         val files = mutableListOf<JsonItem>()
 
         val folder = File(context.filesDir,folderName)
@@ -54,6 +52,23 @@ class JsonService (val context: Context){
         return files
     }
 
+    fun updateFile(jsonFile:JsonFile){}
+
+    fun deleteFile(fileName: String) {
+        val folder = File(context.filesDir, folderName)
+        val file = File(folder, fileName + fileExtension)
+        file.delete()
+    }
+
+    fun selectFile (list: List<JsonItem>, item: JsonItem) {
+        list.forEach {
+            it.selected = it.name == item.name
+        }
+    }
+
+    fun gertSelectedIndex(list: List<JsonItem>): Int{
+        return list.indexOfFirst { jsonItem -> jsonItem.selected }
+    }
 
     private fun getListFromExample():MutableList<Item> {
         val file = context.assets.open("example.json")

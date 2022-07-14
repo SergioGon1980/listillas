@@ -7,7 +7,8 @@ import com.example.listillas.databinding.ItemJsonListBinding
 
 class JsonListAdapter (
     var jsonList: List<JsonItem>,
-    var clickHandler: ((jsonItem:JsonItem) -> Unit)
+    var itemHandler: ((jsonItem:JsonItem, pos: Int) -> Unit),
+    var deleteHandler: ((jsonItem:JsonItem, pos: Int) -> Unit)
 
 ): RecyclerView.Adapter<JsonListAdapter.ViewHolder>(){
 
@@ -24,9 +25,10 @@ class JsonListAdapter (
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
             with(jsonList[position]) {
-                binding.root.setOnClickListener { clickHandler(this)}
+                binding.root.setOnClickListener { itemHandler(this,position)}
                 binding.jsonItemName.text = this.name
                 binding.jsonItemSelected.isChecked = this.selected
+                binding.jsonItemRemoveBtn.setOnClickListener {deleteHandler(this,position)}
             }
         }
     }
