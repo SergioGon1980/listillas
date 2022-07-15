@@ -3,6 +3,7 @@ package com.example.listillas
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.listillas.config.ConfigService
 import com.example.listillas.databinding.ActivityMainBinding
 import com.example.listillas.json.JsonActivity
@@ -18,28 +19,20 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val config = ConfigService()
+        val config = ConfigService(this)
 
-        // TODO: check configuration an pass parameters to login Activity
-        val isLogged = false
+        if (config.getFirebaseActive()) {
+            // TODO gestionar que hacer si esta activo elmodo firebase
+        } else {
+            val defaultFile = config.getDefaultFileName()
 
-        if (isLogged){
-            startActivity(Intent(this, ListaActivity::class.java).apply { })
-        }/*else {
-            // TODO: Is firebase or local?
-            //val isLocal = true
-            val intentLogin = Intent(this, LoginActivity::class.java)
-            intentLogin.putExtra("isLocal", config.isLocal())
-            startActivity (intentLogin)
-        }*/
-
-        if (config.isLocal()) {
-            startActivity(Intent(this, JsonActivity::class.java))
-        }else {
-            val intent = Intent(this, LoginActivity::class.java)
-            intent.putExtra("isLocal", config.isLocal())
-            startActivity(intent)
+            if (defaultFile.isNullOrBlank()) {
+                startActivity(Intent(this, JsonActivity::class.java))
+            } else {
+                val intent = Intent(this, ListaActivity::class.java)
+                intent.putExtra("fileName", defaultFile)
+                startActivity(intent)
+            }
         }
     }
-
 }

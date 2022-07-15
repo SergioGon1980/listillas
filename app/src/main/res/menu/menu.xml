@@ -24,7 +24,10 @@
                 android:title="Config"
                 app:showAsAction="never" />
 
-
+            <item
+                android:id="@+id/JsonMenu"
+                android:title="Json"
+                app:showAsAction="never" />
 
         </menu>
 

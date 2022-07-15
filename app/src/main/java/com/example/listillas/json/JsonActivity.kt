@@ -68,7 +68,7 @@ class JsonActivity : AppCompatActivity() {
 
     private fun deleteHandler(jsonItem: JsonItem, pos: Int){
         val jsonService = JsonService (this)
-        jsonService.deleteFile(jsonItem.name)
+        jsonService.deleteFile(jsonItem)
         jsonListAdapter.jsonList = jsonService.readFileList()
         jsonListAdapter.notifyItemRemoved(pos)
 

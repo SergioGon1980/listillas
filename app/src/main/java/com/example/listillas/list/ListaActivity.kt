@@ -7,10 +7,11 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.listillas.ItemDetailFragment
 import com.example.listillas.R
 import com.example.listillas.databinding.ActivityListaBinding
-import com.example.listillas.databinding.ActivityLoginBinding
 import com.example.listillas.list.item.Item
 import com.example.listillas.menu.MenuHandler
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -21,27 +22,23 @@ class ListaActivity : AppCompatActivity() {
     private lateinit var _binding: ActivityListaBinding
     private val binding get() = _binding
 
-    var list: MutableList<Item> = mutableListOf()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityListaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Log.d("debug", "List Activity Open")
 
+        val list = ListService(this).list
+        val listAdapter = ListAdapter(
+            list,
+            {item, pos -> moveHandler(item, pos)},
+            { item, pos -> editHandler (item, pos) }
+        )
 
-        // Nos creamos una variable de tipo ListService que nos hemos creado
-        // como clase de Kotlin y le pasamos el contexto en el que etamos (this)
-        val listService = ListService(this)
-        list = listService.list
-        val listLayout = findViewById<LinearLayout>(R.id.listLayout)
+        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
+        binding.listContainer.layoutManager = layoutManager
+        binding.listContainer.adapter = listAdapter
 
-        addListToLayout(listLayout)
-
-
-        // Definimos una variable para usar el newButton
-        val newItem = findViewById<FloatingActionButton>(R.id.newButton)
 
         // Usamos la funcion para escuchar el click del boton
         binding.newButton.setOnClickListener() {
@@ -64,17 +61,6 @@ class ListaActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun addListToLayout(Layout:LinearLayout) {
-        list.forEach {
-            var itemview = LayoutInflater.from(this).inflate(R.layout.item_layout,null,false)
-            itemview.findViewById<CheckBox>(R.id.checkbox).isChecked = it.chek
-            itemview.findViewById<TextView>(R.id.textTitle).text = it.title
-            itemview.findViewById<TextView>(R.id.textDescription).text = it.description
-            itemview.findViewById<TextView>(R.id.textDate).text = it.getFormattedDate()
-            Layout.addView(itemview)
-        }
-    }
-
     private fun addElemetToFragment() {
         //Variables para la creacion de un nuevo fragmento
         val fragmentTransacction = supportFragmentManager.beginTransaction()
@@ -90,7 +76,15 @@ class ListaActivity : AppCompatActivity() {
         val textView = TextView(this)
         textView.text = text
 
-        val listLayout = findViewById<LinearLayout>(R.id.listLayout)
+        val listLayout = findViewById<LinearLayout>(R.id.listContainer)
         listLayout.addView(textView)
     }
 }
+
+    private fun editHandler(item: Item, pos: Int) {
+
+    }
+
+    private fun moveHandler(item: Item, pos: Int) {
+
+    }
