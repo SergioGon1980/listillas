@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "959865760130",
+    "project_id": "sergiogon1980-listillas",
+    "storage_bucket": "sergiogon1980-listillas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959865760130:android:aad6332ecb566c68ca879b",
+        "android_client_info": {
+          "package_name": "com.example.listillas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "959865760130-94rjj2sufmibqhf4ul3p7tsd04t9grt3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBKMFctH-yTjpi3kk83PPfqgmIWsyxwzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "959865760130-94rjj2sufmibqhf4ul3p7tsd04t9grt3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

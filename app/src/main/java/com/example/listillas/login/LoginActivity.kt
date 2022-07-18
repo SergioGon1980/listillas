@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.widget.FrameLayout
 import com.example.listillas.R
 import com.example.listillas.databinding.ActivityLoginBinding
+import com.example.listillas.firebase.FirebaseService
 import com.example.listillas.menu.MenuHandler
 
 class LoginActivity : AppCompatActivity() {
@@ -20,13 +21,7 @@ class LoginActivity : AppCompatActivity() {
         _binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val isLocal = intent.getBooleanExtra("isLocal", true)
-
-        if (isLocal) {
-            initLocalJSON()
-        }else {
-            initFirebase()
-        }
+        initFirebase()
 
     }
 
@@ -45,14 +40,15 @@ class LoginActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun initFirebase() {
+    //Firebase
+    private fun initFirebase () {
+        val firebaseService = FirebaseService (this)
+    }
+
+    fun logFragmentirebase() {
         var transaction = supportFragmentManager.beginTransaction()
         transaction.replace(binding.loginContainer.id, LoginFormFragment())
         transaction.commit()
-    }
-
-    fun initLocalJSON() {
-
     }
 
 }

@@ -9,6 +9,8 @@ import com.example.listillas.databinding.ActivityMainBinding
 import com.example.listillas.json.JsonActivity
 import com.example.listillas.list.ListaActivity
 import com.example.listillas.login.LoginActivity
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var _binding:ActivityMainBinding
@@ -21,8 +23,8 @@ class MainActivity : AppCompatActivity() {
 
         val config = ConfigService(this)
 
-        if (config.getFirebaseActive()) {
-            // TODO gestionar que hacer si esta activo elmodo firebase
+        if (!config.getFirebaseActive()) {
+            startActivity(Intent(this, LoginActivity::class.java))
         } else {
             val defaultFile = config.getDefaultFileName()
 
@@ -34,5 +36,10 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+
+        val database = Firebase.database("https://sergiogon1980-listillas-default-rtdb.europe-west1.firebasedatabase.app/")
+        val reference = database.getReference("message")
+        reference.setValue("Hello World")
+
     }
 }

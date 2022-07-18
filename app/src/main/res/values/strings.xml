@@ -16,4 +16,6 @@
     <string name="title_label">Title</string>
     <string name="description_label">Description</string>
     <string name="new_item">New Item</string>
+
+    <string name="firebase_id">959865760130-94rjj2sufmibqhf4ul3p7tsd04t9grt3.apps.googleusercontent.com</string>
 </resources>
