@@ -16,8 +16,8 @@ class FirebaseService constructor(val context: Context){
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
 
-    private lateinit var oneTapClient: SignInClient
-    private lateinit var signInRequest: BeginSignInRequest
+    lateinit var oneTapClient: SignInClient
+    lateinit var signInRequest: BeginSignInRequest
 
     init {
         signIn()
@@ -33,7 +33,7 @@ class FirebaseService constructor(val context: Context){
             .setGoogleIdTokenRequestOptions(
                 BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
                     .setSupported(true)
-                    .setServerClientId(R.string.firebase_id.toString())
+                    .setServerClientId(context.getString(R.string.firebase_id))
                     .setFilterByAuthorizedAccounts(true)
                     .build())
             .setAutoSelectEnabled(true)

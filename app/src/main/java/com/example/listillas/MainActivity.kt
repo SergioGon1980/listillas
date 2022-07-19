@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         val config = ConfigService(this)
 
-        if (!config.getFirebaseActive()) {
+        if (config.getFirebaseActive()) {
             startActivity(Intent(this, LoginActivity::class.java))
         } else {
             val defaultFile = config.getDefaultFileName()
