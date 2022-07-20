@@ -8,6 +8,7 @@ import com.example.listillas.list.ListService
 import com.example.listillas.list.ToDoList
 import com.example.listillas.list.item.Item
 import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import org.json.JSONArray
 import java.io.File
 
@@ -32,8 +33,8 @@ class JsonService (val context: Context){
         var json = "[]"
         if (copyExample) {
             val gson = GsonBuilder().setPrettyPrinting().create()
-            val toDoList = getListFromExample()
-            json = gson.toJson(toDoList.list)
+            val list = getListFromExample()
+            json = gson.toJson(list)
         }
 
 
@@ -59,7 +60,7 @@ class JsonService (val context: Context){
         return files
     }
 
-    fun updateFile(jsonFile:JsonFile){}
+    fun updateFile(){}
 
     fun deleteFile(json: JsonItem) {
         val folder = File(context.filesDir, folderName)
@@ -94,12 +95,13 @@ class JsonService (val context: Context){
 
     }
 
-    private fun getListFromExample(): ToDoList {
+    private fun getListFromExample(): List<Item> {
         val file = context.assets.open("example.json")
         val json = file.bufferedReader().use { it.readText()}
         val gson = GsonBuilder().create()
-        val list = gson.fromJson(json, ToDoList::class.java)
-
+        val itemType = object : TypeToken<List<Item>>() {}.type
+        val list:List<Item> = gson.fromJson(json, itemType)
+        Log.d("debug", "LISTA: " + list)
         return list
     }
 }

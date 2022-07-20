@@ -1,4 +1,4 @@
-package com.example.listillas.firebase
+package com.example.listillas.storage.firebase
 
 import android.content.Context
 import androidx.activity.result.contract.ActivityResultContracts

@@ -25,6 +25,10 @@ data class Item(
     val media: String?,
     val list: List<SubItem>?
 ) {
+    fun getCreationDate(): String {
+        return getFormattedDate(creationDate)
+    }
+
     fun getFormattedDate(date: Long): String {
         val format = SimpleDateFormat("dd-MM-yyyy")
         return format.format(date)

@@ -5,10 +5,10 @@ import android.content.Intent
 import android.util.Log
 import android.view.MenuItem
 import com.example.listillas.R
-import com.example.listillas.config.ConfigActivity
-import com.example.listillas.json.JsonActivity
+import com.example.listillas.views.config.ConfigActivity
+import com.example.listillas.views.listmanagement.JsonActivity
 import com.example.listillas.list.ListaActivity
-import com.example.listillas.login.LoginActivity
+import com.example.listillas.views.login.LoginActivity
 
 class MenuHandler constructor(val context:Context, val current:String){
 
@@ -27,7 +27,7 @@ class MenuHandler constructor(val context:Context, val current:String){
         if (current == "Config") {
             intent = null
         } else {
-            intent = Intent(context,ConfigActivity::class.java)
+            intent = Intent(context, ConfigActivity::class.java)
         }
 
         Log.d("debug", "Menu: Config")
@@ -46,7 +46,7 @@ class MenuHandler constructor(val context:Context, val current:String){
         if (current == "Login") {
             intent = null
         } else {
-            intent = Intent(context,LoginActivity::class.java)
+            intent = Intent(context, LoginActivity::class.java)
         }
         Log.d("debug", "Menu: Login")
     }
@@ -55,7 +55,7 @@ class MenuHandler constructor(val context:Context, val current:String){
         if (current == "Json") {
             intent = null
         } else {
-            intent = Intent(context,JsonActivity::class.java)
+            intent = Intent(context, JsonActivity::class.java)
         }
         Log.d("debug", "Menu: Json")
     }

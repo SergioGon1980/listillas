@@ -3,14 +3,12 @@ package com.example.listillas
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.example.listillas.config.ConfigService
 import com.example.listillas.databinding.ActivityMainBinding
-import com.example.listillas.json.JsonActivity
+import com.example.listillas.views.listmanagement.JsonActivity
 import com.example.listillas.list.ListaActivity
-import com.example.listillas.login.LoginActivity
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import com.example.listillas.views.login.LoginActivity
+import com.example.listillas.storage.StorageTypes
 
 class MainActivity : AppCompatActivity() {
     private lateinit var _binding:ActivityMainBinding
@@ -23,23 +21,26 @@ class MainActivity : AppCompatActivity() {
 
         val config = ConfigService(this)
 
-        if (config.getFirebaseActive()) {
-            startActivity(Intent(this, LoginActivity::class.java))
-        } else {
-            val defaultFile = config.getDefaultFileName()
+        //when (config.getSlectedStorage()) {
+        when (StorageTypes.FIREBASE) {
+            StorageTypes.FIREBASE ->
+               startActivity(Intent(this, LoginActivity::class.java))
+            else -> {
+                val defaultFile = config.getDefaultFileName()
 
-            if (defaultFile.isNullOrBlank()) {
-                startActivity(Intent(this, JsonActivity::class.java))
-            } else {
-                val intent = Intent(this, ListaActivity::class.java)
-                intent.putExtra("fileName", defaultFile)
-                startActivity(intent)
+                if (defaultFile.isNullOrBlank()) {
+                    startActivity(Intent(this, JsonActivity::class.java))
+                } else {
+                    val intent = Intent(this, ListaActivity::class.java)
+                    intent.putExtra("fileName", defaultFile)
+                    startActivity(intent)
+                }
             }
         }
 
-        val database = Firebase.database("https://sergiogon1980-listillas-default-rtdb.europe-west1.firebasedatabase.app/")
-        val reference = database.getReference("message")
-        reference.setValue("Hello World")
+//        val database = Firebase.database("https://sergiogon1980-listillas-default-rtdb.europe-west1.firebasedatabase.app/")
+//        val reference = database.getReference("message")
+//        reference.setValue("Hello World")
 
     }
 }

@@ -40,6 +40,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:30.3.0')
     implementation 'com.google.firebase:firebase-database-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
 
     // Metodos para la conexion de la API de autenticacion de Google
     implementation 'com.google.android.gms:play-services-auth:20.2.0'

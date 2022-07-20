@@ -1,4 +1,4 @@
-package com.example.listillas.config
+package com.example.listillas.views.config
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.listillas.R
 import com.example.listillas.databinding.ActivityConfigBinding
-import com.example.listillas.databinding.ActivityListaBinding
 import com.example.listillas.menu.MenuHandler
 
 class ConfigActivity : AppCompatActivity() {
@@ -26,7 +25,7 @@ class ConfigActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var menuHandler = MenuHandler(this,"Config")
+        val menuHandler = MenuHandler(this,"Config")
         menuHandler.itemHandler(item)
         if (menuHandler.intent != null) {
             startActivity(menuHandler.intent)

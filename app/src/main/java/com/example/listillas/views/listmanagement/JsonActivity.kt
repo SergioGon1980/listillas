@@ -1,4 +1,4 @@
-package com.example.listillas.json
+package com.example.listillas.views.listmanagement
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listillas.R
 import com.example.listillas.databinding.ActivityJsonBinding
+import com.example.listillas.json.JsonItem
+import com.example.listillas.json.JsonService
 import com.example.listillas.menu.MenuHandler
 
 class JsonActivity : AppCompatActivity() {
@@ -50,7 +52,7 @@ class JsonActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var menuHandler = MenuHandler(this,"Json")
+        val menuHandler = MenuHandler(this,"Json")
         menuHandler.itemHandler(item)
         if (menuHandler.intent != null) {
             startActivity(menuHandler.intent)

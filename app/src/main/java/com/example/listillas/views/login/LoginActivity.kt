@@ -1,4 +1,4 @@
-package com.example.listillas.login
+package com.example.listillas.views.login
 
 import android.app.Activity
 import android.content.Intent
@@ -7,14 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.FrameLayout
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.listillas.R
 import com.example.listillas.databinding.ActivityLoginBinding
-import com.example.listillas.firebase.FirebaseService
+import com.example.listillas.storage.firebase.FirebaseService
 import com.example.listillas.menu.MenuHandler
 import com.google.android.gms.common.api.ApiException
-import kotlin.math.log
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var _binding: ActivityLoginBinding
@@ -64,12 +62,6 @@ class LoginActivity : AppCompatActivity() {
     //Firebase
     private fun initFirebase () {
         val firebaseService = FirebaseService (this)
-    }
-
-    fun logFragmentirebase() {
-        var transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(binding.loginContainer.id, LoginFormFragment())
-        transaction.commit()
     }
 
 }

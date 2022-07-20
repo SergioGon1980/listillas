@@ -1,14 +1,15 @@
-package com.example.listillas.json
+package com.example.listillas.views.listmanagement
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listillas.databinding.ItemJsonListBinding
+import com.example.listillas.json.JsonItem
 
 class JsonListAdapter (
     var jsonList: List<JsonItem>,
-    var itemHandler: ((jsonItem:JsonItem, pos: Int) -> Unit),
-    var deleteHandler: ((jsonItem:JsonItem, pos: Int) -> Unit)
+    var itemHandler: ((jsonItem: JsonItem, pos: Int) -> Unit),
+    var deleteHandler: ((jsonItem: JsonItem, pos: Int) -> Unit)
 
 ): RecyclerView.Adapter<JsonListAdapter.ViewHolder>(){
 

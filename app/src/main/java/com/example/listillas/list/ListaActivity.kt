@@ -2,8 +2,6 @@ package com.example.listillas.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.*
@@ -14,9 +12,7 @@ import com.example.listillas.R
 import com.example.listillas.databinding.ActivityListaBinding
 import com.example.listillas.list.item.Item
 import com.example.listillas.menu.MenuHandler
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-//import { Icon } from '@material-ui/core';
 
 class ListaActivity : AppCompatActivity() {
     private lateinit var _binding: ActivityListaBinding
@@ -28,11 +24,11 @@ class ListaActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val list = ListService(this).list
+        val list = ListService(this).toDolist.list
         val listAdapter = ListAdapter(
             list,
-            {item, pos -> moveHandler(item, pos)},
-            { item, pos -> editHandler (item, pos) }
+            { item, pos -> moveHandler(item, pos) },
+            { item, pos -> editHandler(item, pos) }
         )
 
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
@@ -73,13 +69,13 @@ class ListaActivity : AppCompatActivity() {
     }
 
     private fun addItemToLayout(text: String) {
+
         val textView = TextView(this)
         textView.text = text
 
         val listLayout = findViewById<LinearLayout>(R.id.listContainer)
         listLayout.addView(textView)
     }
-}
 
     private fun editHandler(item: Item, pos: Int) {
 
@@ -88,3 +84,5 @@ class ListaActivity : AppCompatActivity() {
     private fun moveHandler(item: Item, pos: Int) {
 
     }
+}
+
