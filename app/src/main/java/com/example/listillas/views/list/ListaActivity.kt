@@ -1,4 +1,4 @@
-package com.example.listillas.list
+package com.example.listillas.views.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.listillas.ItemDetailFragment
 import com.example.listillas.R
 import com.example.listillas.databinding.ActivityListaBinding
+import com.example.listillas.list.ListService
 import com.example.listillas.list.item.Item
 import com.example.listillas.menu.MenuHandler
 
@@ -22,7 +23,6 @@ class ListaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityListaBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         val list = ListService(this).toDolist.list
         val listAdapter = ListAdapter(

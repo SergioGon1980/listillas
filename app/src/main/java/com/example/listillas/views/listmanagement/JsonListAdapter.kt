@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listillas.databinding.ItemJsonListBinding
-import com.example.listillas.json.JsonItem
+import com.example.listillas.storage.JsonItem
 
 class JsonListAdapter (
     var jsonList: List<JsonItem>,

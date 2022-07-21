@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listillas.R
 import com.example.listillas.databinding.ActivityJsonBinding
-import com.example.listillas.json.JsonItem
-import com.example.listillas.json.JsonService
+import com.example.listillas.storage.JsonItem
+import com.example.listillas.storage.JsonService
 import com.example.listillas.menu.MenuHandler
 
 class JsonActivity : AppCompatActivity() {

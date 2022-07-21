@@ -1,13 +1,10 @@
-package com.example.listillas.list.item
-
+package com.example.listillas.entities
 
 import com.example.listillas.list.item.ItemTypes
 import com.example.listillas.list.item.SubItem
-import java.text.SimpleDateFormat
 import java.time.Instant
 
-// al poner al final del parametro una ? indica que no es obligatorio
-data class Item(
+data class Note (
     //Obligatoria
     val title: String,
 
@@ -25,14 +22,4 @@ data class Item(
 
     // Opcionales de tipo especial
     val media: String? = null,
-    val list: List<SubItem>?  = emptyList()
-) {
-    fun getCreationDate(): String {
-        return getFormattedDate(creationDate)
-    }
-
-    fun getFormattedDate(date: Long): String {
-        val format = SimpleDateFormat("dd-MM-yyyy")
-        return format.format(date)
-    }
-}
+    val list: List<SubItem>?  = emptyList())

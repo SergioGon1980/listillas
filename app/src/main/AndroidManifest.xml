@@ -19,7 +19,7 @@
             android:name=".views.config.ConfigActivity"
             android:exported="false" />
         <activity
-            android:name=".list.ListaActivity"
+            android:name=".views.list.ListaActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

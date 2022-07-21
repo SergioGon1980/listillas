@@ -6,8 +6,7 @@ import android.os.Bundle
 import com.example.listillas.config.ConfigService
 import com.example.listillas.databinding.ActivityMainBinding
 import com.example.listillas.views.listmanagement.JsonActivity
-import com.example.listillas.list.ListaActivity
-import com.example.listillas.views.login.LoginActivity
+import com.example.listillas.views.list.ListaActivity
 import com.example.listillas.storage.StorageTypes
 
 class MainActivity : AppCompatActivity() {
@@ -20,22 +19,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val config = ConfigService(this)
+        var defaultList: String? = null
 
-        //when (config.getSlectedStorage()) {
-        when (StorageTypes.FIREBASE) {
-            StorageTypes.FIREBASE ->
-               startActivity(Intent(this, LoginActivity::class.java))
-            else -> {
-                val defaultFile = config.getDefaultFileName()
-
-                if (defaultFile.isNullOrBlank()) {
-                    startActivity(Intent(this, JsonActivity::class.java))
-                } else {
-                    val intent = Intent(this, ListaActivity::class.java)
-                    intent.putExtra("fileName", defaultFile)
-                    startActivity(intent)
-                }
+        when (config.getSlectedStorage()) {
+            StorageTypes.FIREBASE -> {
+                // ToDo -> startActivity(Intent(this, LoginActivity::class.java))
+                defaultList = config.getDefaultFirebaseNode()
             }
+            else -> { //StorageTypes.LOCAL
+                defaultList = config.getDefaultFileName()
+            }
+        }
+
+        if (defaultList.isNullOrBlank()) {
+            startActivity(Intent(this, JsonActivity::class.java))
+        } else {
+            startActivity(Intent(this, ListaActivity::class.java))
         }
 
 //        val database = Firebase.database("https://sergiogon1980-listillas-default-rtdb.europe-west1.firebasedatabase.app/")

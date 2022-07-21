@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/light_gray"
     android:orientation="vertical"
-    tools:context="com.example.listillas.list.ListaActivity">
+    tools:context="com.example.listillas.views.list.ListaActivity">
 
     <ScrollView
         android:layout_width="match_parent"

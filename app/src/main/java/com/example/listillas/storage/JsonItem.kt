@@ -1,4 +1,4 @@
-package com.example.listillas.json
+package com.example.listillas.storage
 
 class JsonItem(
     val name:String,

@@ -7,7 +7,7 @@ import android.view.MenuItem
 import com.example.listillas.R
 import com.example.listillas.views.config.ConfigActivity
 import com.example.listillas.views.listmanagement.JsonActivity
-import com.example.listillas.list.ListaActivity
+import com.example.listillas.views.list.ListaActivity
 import com.example.listillas.views.login.LoginActivity
 
 class MenuHandler constructor(val context:Context, val current:String){
@@ -37,7 +37,7 @@ class MenuHandler constructor(val context:Context, val current:String){
         if (current == "List") {
             intent = null
         } else {
-            intent = Intent(context,ListaActivity::class.java)
+            intent = Intent(context, ListaActivity::class.java)
         }
         Log.d("debug", "Menu: List")
     }

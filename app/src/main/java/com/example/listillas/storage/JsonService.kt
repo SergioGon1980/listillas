@@ -1,15 +1,14 @@
-package com.example.listillas.json
+package com.example.listillas.storage
 
 
 import android.content.Context
 import android.util.Log
 import com.example.listillas.config.ConfigService
-import com.example.listillas.list.ListService
-import com.example.listillas.list.ToDoList
 import com.example.listillas.list.item.Item
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import org.json.JSONArray
 import java.io.File
 
 class JsonService (val context: Context){
@@ -39,6 +38,19 @@ class JsonService (val context: Context){
 
 
         file.writeText(json)
+
+    }
+
+    fun createFirebaseNode (name:String, copyExample:Boolean) {
+        val database =
+            Firebase.database("https://sergiogon1980-listillas-default-rtdb.europe-west1.firebasedatabase.app/")
+        val reference = database.getReference(name)
+
+        if (copyExample) {
+            reference.setValue(getListFromExample())
+        } else {
+            reference.setValue(emptyList<Item>())
+        }
     }
 
     fun readFileList():List<JsonItem> {

@@ -1,4 +1,4 @@
-package com.example.listillas.list
+package com.example.listillas.views.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
