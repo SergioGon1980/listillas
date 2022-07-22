@@ -5,11 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listillas.databinding.ItemJsonListBinding
 import com.example.listillas.storage.JsonItem
+import com.example.listillas.storage.ListService
 
 class JsonListAdapter (
-    var jsonList: List<JsonItem>,
-    var itemHandler: ((jsonItem: JsonItem, pos: Int) -> Unit),
-    var deleteHandler: ((jsonItem: JsonItem, pos: Int) -> Unit)
+    var jsonList: List<String>,
+    var selected: String?,
+    var itemHandler: ((id: String, pos: Int) -> Unit),
+    var deleteHandler: ((id: String, pos: Int) -> Unit)
 
 ): RecyclerView.Adapter<JsonListAdapter.ViewHolder>(){
 
@@ -27,8 +29,8 @@ class JsonListAdapter (
         with(holder) {
             with(jsonList[position]) {
                 binding.root.setOnClickListener { itemHandler(this,position)}
-                binding.jsonItemName.text = this.name
-                binding.jsonItemSelected.isChecked = this.selected
+                binding.jsonItemName.text = this
+                binding.jsonItemSelected.isChecked = this == selected
                 binding.jsonItemRemoveBtn.setOnClickListener {deleteHandler(this,position)}
             }
         }

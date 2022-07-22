@@ -11,6 +11,7 @@ import com.example.listillas.databinding.ActivityJsonBinding
 import com.example.listillas.storage.JsonItem
 import com.example.listillas.storage.JsonService
 import com.example.listillas.menu.MenuHandler
+import com.example.listillas.storage.ListService
 
 class JsonActivity : AppCompatActivity() {
     private var _binding: ActivityJsonBinding? = null
@@ -23,11 +24,14 @@ class JsonActivity : AppCompatActivity() {
         _binding = ActivityJsonBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val jsonList = JsonService(this).readFileList()
+        val listService = ListService (this)
+        val jsonList = listService.allList
+        val selected: String? = listService.defaultId
         jsonListAdapter = JsonListAdapter(
             jsonList,
-            { jsonItem, pos -> itemHandler(jsonItem, pos) },
-            { jsonItem, pos -> deleteHandler(jsonItem, pos)}
+            selected,
+            { id, pos -> itemHandler(id, pos) },
+            { id, pos -> deleteHandler(id, pos)}
         )
 
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager (this)
@@ -60,7 +64,7 @@ class JsonActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun itemHandler (jsonItem: JsonItem, pos: Int) {
+    private fun itemHandler (id: String, pos: Int) {
         val jsonService = JsonService (this)
         val prev = jsonService.gertSelectedIndex(jsonListAdapter.jsonList)
         jsonService.selectFile(jsonListAdapter.jsonList,jsonItem)
@@ -68,9 +72,9 @@ class JsonActivity : AppCompatActivity() {
         jsonListAdapter.notifyItemChanged(pos)
     }
 
-    private fun deleteHandler(jsonItem: JsonItem, pos: Int){
-        val jsonService = JsonService (this)
-        jsonService.deleteFile(jsonItem)
+    private fun deleteHandler(id: String, pos: Int){
+        val listService = ListService (this)
+        listService.
         jsonListAdapter.jsonList = jsonService.readFileList()
         jsonListAdapter.notifyItemRemoved(pos)
 

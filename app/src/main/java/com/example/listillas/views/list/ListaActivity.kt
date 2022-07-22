@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.listillas.ItemDetailFragment
 import com.example.listillas.R
 import com.example.listillas.databinding.ActivityListaBinding
-import com.example.listillas.list.ListService
-import com.example.listillas.list.item.Item
+import com.example.listillas.entities.Note
+import com.example.listillas.storage.ListService
 import com.example.listillas.menu.MenuHandler
 
 
@@ -24,11 +24,12 @@ class ListaActivity : AppCompatActivity() {
         _binding = ActivityListaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val list = ListService(this).toDolist.list
+        //val list = ListService(this).toDolist.list
+        val list = ListService(this).notes
         val listAdapter = ListAdapter(
             list,
-            { item, pos -> moveHandler(item, pos) },
-            { item, pos -> editHandler(item, pos) }
+            { note, pos -> moveHandler(note, pos) },
+            { note, pos -> editHandler(note, pos) }
         )
 
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
@@ -77,11 +78,11 @@ class ListaActivity : AppCompatActivity() {
         listLayout.addView(textView)
     }
 
-    private fun editHandler(item: Item, pos: Int) {
+    private fun editHandler(note: Note, pos: Int) {
 
     }
 
-    private fun moveHandler(item: Item, pos: Int) {
+    private fun moveHandler(note: Note, pos: Int) {
 
     }
 }

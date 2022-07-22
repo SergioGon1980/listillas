@@ -1,4 +1,4 @@
-package com.example.listillas.list
+package com.example.listillas.storage
 
 import android.content.Context
 import android.util.Log
@@ -15,6 +15,8 @@ import com.google.gson.reflect.TypeToken
 
 class ListService constructor(val context: Context) {
 
+    public val defaultId: String?
+    var allList: List<String>
     var notes: List<Note>
     var noteRepository: INotesRepository
 
@@ -22,7 +24,7 @@ class ListService constructor(val context: Context) {
 
 
     init {
-        val defaultId: String?
+
         configService = ConfigService(context)
         when (configService.getSlectedStorage()) {
             StorageTypes.FIREBASE -> {
@@ -35,6 +37,7 @@ class ListService constructor(val context: Context) {
             }
         }
 
+        allList = noteRepository.readnotes()
         notes = noteRepository.readNotesById(defaultId!!)
     }
 }
